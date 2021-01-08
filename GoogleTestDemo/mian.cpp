@@ -85,6 +85,23 @@ TEST_F(CGT, CEven)
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////
+//参数化
+TEST_P(CGT_T, CT)
+{
+	EXPECT_TRUE(CShow());
+}
+int aValues[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+//const char* aValues[] = { "how", "are", "you" };
+// INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::Values(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
+// INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::Values("how", "are", "you"));
+// INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::ValuesIn(aValues));
+// INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::ValuesIn(aValues + 1, aValues + 2));
+// INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::Range(0, 9));
+// INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::Range(0, 9, 2));
+// INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::Bool());
+INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::Combine(testing::Range(0, 2), testing::Bool(), testing::Values("how", "are", "you")));
+
 int main(int argc, char* argv[])
 {
 	//把事件挂卡来，先挂起的包住后挂起的。

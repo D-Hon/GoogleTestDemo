@@ -9,6 +9,9 @@
 #pragma comment(lib,"gtest_main.lib")
 #endif
 
+#include<iostream>
+using namespace std;
+
 
 class CGT
 	: public ::testing::Test
@@ -55,6 +58,28 @@ public:
 		printf("CGT TearDownTestCase\n");
 	}
 
+};
+
+//参数化，testing::TestWithParam<T>，TEST_P
+class CGT_T
+//	: public::testing::TestWithParam<int>
+//	: public::testing::TestWithParam<const char*>
+	: public::testing::TestWithParam<::std::tr1::tuple<int, bool, const char*>>
+{
+public:
+	bool CShow()
+	{
+		//单参数
+		//cout << GetParam() << endl;
+
+		//组合参数
+		cout 
+			<< ::std::tr1::get<0>(GetParam()) << ", "
+			<< ::std::tr1::get<1>(GetParam()) << ", "
+			<< ::std::tr1::get<2>(GetParam()) << endl;
+
+		return true;
+	}
 };
 
 //全局事件，main 里面通过 testing::AddGlobalTestEnvironment(new FooEnvironment_First);
