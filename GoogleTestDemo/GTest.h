@@ -56,3 +56,32 @@ public:
 	}
 
 };
+
+//全局事件，main 里面通过 testing::AddGlobalTestEnvironment(new FooEnvironment_First);
+//挂起事件，先挂起的事件包住后挂起的事件
+//以 RUN_ALL_TESTS 为周期，在所有 测试 执行前执行 SetUp，所有测试完成后 执行 TearDown
+class FooEnvironment_First : public testing::Environment
+{
+public:
+	virtual void SetUp()
+	{
+		std::cout << "FooEnvironment_First SetUP" << std::endl;
+	}
+	virtual void TearDown()
+	{
+		std::cout << "FooEnvironment_First TearDown" << std::endl;
+	}
+};
+
+class FooEnvironment_Second : public testing::Environment
+{
+public:
+	virtual void SetUp()
+	{
+		std::cout << "FooEnvironment_Second SetUP" << std::endl;
+	}
+	virtual void TearDown()
+	{
+		std::cout << "FooEnvironment_Second TearDown" << std::endl;
+	}
+};

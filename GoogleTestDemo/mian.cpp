@@ -61,6 +61,10 @@ TEST_F(CGT, CEven)
 
 int main(int argc, char* argv[])
 {
+	//把事件挂卡来，先挂起的包住后挂起的。
+	testing::AddGlobalTestEnvironment(new FooEnvironment_First);
+	testing::AddGlobalTestEnvironment(new FooEnvironment_Second);
+
 	testing::InitGoogleTest(&argc, argv);
 
 	RUN_ALL_TESTS();
