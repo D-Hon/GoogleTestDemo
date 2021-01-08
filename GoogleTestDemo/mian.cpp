@@ -104,6 +104,8 @@ INSTANTIATE_TEST_SUITE_P(CT, CGT_T, testing::Combine(testing::Range(0, 2), testi
 
 int main(int argc, char* argv[])
 {
+	testing::GTEST_FLAG(output) = "xml:";  //测试结果以xml格式保存到运行路径下，且不会覆盖，每份测试结果均被保存
+
 	//把事件挂卡来，先挂起的包住后挂起的。
 	//testing::AddGlobalTestEnvironment(new FooEnvironment_First);
 	//testing::AddGlobalTestEnvironment(new FooEnvironment_Second);
