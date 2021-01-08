@@ -110,6 +110,26 @@ int main(int argc, char* argv[])
 	//testing::AddGlobalTestEnvironment(new FooEnvironment_First);
 	//testing::AddGlobalTestEnvironment(new FooEnvironment_Second);
 
+	/*命令行形式传测试指令
+
+	--gtest_output=xml:             //测试结果以xml格式保存到运行路径下
+	--gtest_output=xml:d:\          //测试结果以xml格式保存到 D盘
+	--gtest_output=xml:d:\foo.xml   //测试结果以foo.xml文件保存到 D盘
+
+	./foo_test                                      运行所有案例
+	./foo_test --gtest_filter=*                     运行所有案例
+	./foo_test --gtest_filter=FooTest.*             运行所有“测试案例名称(testcase_name)”为FooTest的案例
+	./foo_test --gtest_filter=*Null*:*Constructor*  运行所有“测试案例名称(testcase_name)”或“测试名称(test_name)”包含Null或Constructor的案例。
+	./foo_test --gtest_filter=FooTest.*-FooTest.Bar 运行所有“测试案例名称(testcase_name)”为FooTest的案例，但是除了FooTest.Bar这个案例
+
+	--gtest_repeat=1000    重复执行1000次，即使中途出现错误。
+	--gtest_repeat=-1      无限次数执行
+	--gtest_repeat=1000 --gtest_break_on_failure    重复执行1000次，并且在第一个错误发生时立即停止。这个功能对调试非常有用。
+	--gtest_repeat=1000 --gtest_filter=FooBar       重复执行1000次测试案例名称为FooBar的案例。
+
+
+	--gtest_break_on_failure	调试模式下，当案例失败时停止，方便调试
+	*/
 	testing::InitGoogleTest(&argc, argv);
 
 	RUN_ALL_TESTS();

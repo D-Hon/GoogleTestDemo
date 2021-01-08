@@ -1,0 +1,1 @@
+GoogleTestDemo.exe ./foo_test --gtest_filter=GT.* --gtest_output=xml:d:\foo.xml
