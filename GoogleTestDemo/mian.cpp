@@ -1,12 +1,5 @@
 
-#include <gtest/gtest.h>
-#ifdef _DEBUG
-#pragma comment(lib,"gtestd.lib")
-#pragma comment(lib,"gtest_maind.lib")
-#else
-#pragma comment(lib,"gtest.lib")
-#pragma comment(lib,"gtest_main.lib")
-#endif
+#include "GTest.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -27,14 +20,42 @@ TEST(GT, Odd)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		EXPECT_EQ(true, Odd(i));
+		//if (1 == (i % 2))
+		{
+			EXPECT_EQ(true, Odd(i)) << i << " 不为奇数";
+		}
 	}
 }
 TEST(GT, Even)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		EXPECT_EQ(true, Even(i));
+		//if (0 == (i % 2))
+		{
+			EXPECT_EQ(true, Even(i)) << i << " 不为偶数";
+		}
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////
+TEST_F(CGT, COdd)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (1 == (i % 2))
+		{
+			EXPECT_EQ(true, COdd(i));
+		}
+	}
+}
+TEST_F(CGT, CEven)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (0 == (i % 2))
+		{
+			EXPECT_EQ(true, CEven(i));
+		}
 	}
 }
 
